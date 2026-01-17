@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Better Computer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: #fefefe;
+            min-height: 100vh;
+            color: #1a1a1a;
+            overflow-x: hidden;
+        }
+
+        /* Fun floating shapes in background */
+        .bg-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .shape-1 {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, #ff6b6b22, #feca5722);
+            top: -100px;
+            right: -50px;
+            animation-delay: 0s;
+        }
+
+        .shape-2 {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, #4ecdc422, #45b7d122);
+            bottom: 10%;
+            left: -50px;
+            animation-delay: -5s;
+        }
+
+        .shape-3 {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, #a855f722, #ec489922);
+            top: 40%;
+            right: 5%;
+            animation-delay: -10s;
+        }
+
+        .shape-4 {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #22c55e22, #84cc1622);
+            bottom: 20%;
+            right: 20%;
+            animation-delay: -15s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(20px, -20px) rotate(5deg); }
+            50% { transform: translate(-10px, 20px) rotate(-5deg); }
+            75% { transform: translate(15px, 10px) rotate(3deg); }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
+            text-align: center;
+        }
+
+        .header {
+            margin-bottom: 2rem;
+        }
+
+        .logo-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .computer-icon {
+            font-size: 3rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        h1 {
+            font-size: 2.75rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 5s ease infinite;
+        }
+
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .tagline {
+            font-size: 1.35rem;
+            color: #555;
+            margin-top: 0.75rem;
+            font-weight: 500;
+        }
+
+        .tagline .highlight {
+            background: linear-gradient(to right, #ffeaa7, #fdcb6e);
+            padding: 0.1em 0.3em;
+            border-radius: 4px;
+        }
+
+        .intro-card {
+            background: #fff;
+            border: 2px solid #eee;
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            text-align: left;
+        }
+
+        .intro-card p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #444;
+        }
+
+        .intro-card .emoji-bullet {
+            display: block;
+            margin-top: 1rem;
+            padding-left: 0;
+        }
+
+        .emoji-bullet span {
+            display: inline-block;
+            margin-right: 0.5rem;
+        }
+
+        .cta-section {
+            margin: 2.5rem 0;
+        }
+
+        .subscribe-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: #ff0000;
+            color: #fff;
+            padding: 1.1rem 2.25rem;
+            border-radius: 16px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.15rem;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 0 #cc0000, 0 6px 20px rgba(255, 0, 0, 0.2);
+        }
+
+        .subscribe-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 0 #cc0000, 0 10px 30px rgba(255, 0, 0, 0.25);
+        }
+
+        .subscribe-btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #cc0000, 0 4px 10px rgba(255, 0, 0, 0.2);
+        }
+
+        .subscribe-btn svg {
+            width: 26px;
+            height: 26px;
+            fill: currentColor;
+        }
+
+        .fun-fact {
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            color: #888;
+        }
+
+        .topics-section {
+            margin-top: 3rem;
+        }
+
+        .topics-section h2 {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #aaa;
+            margin-bottom: 1rem;
+        }
+
+        .topics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            justify-content: center;
+        }
+
+        .topic {
+            padding: 0.6rem 1.1rem;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: transform 0.2s ease;
+            cursor: default;
+        }
+
+        .topic:hover {
+            transform: scale(1.05) rotate(-1deg);
+        }
+
+        .topic-apple { background: #f0f0f0; color: #333; }
+        .topic-reviews { background: #fff3cd; color: #856404; }
+        .topic-apps { background: #d4edda; color: #155724; }
+        .topic-gaming { background: #e2d5f3; color: #5a3d8a; }
+        .topic-analysis { background: #cce5ff; color: #004085; }
+
+        footer {
+            margin-top: 4rem;
+            padding: 1.5rem;
+            color: #bbb;
+            font-size: 0.875rem;
+        }
+
+        footer a {
+            color: #888;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 500px) {
+            h1 { font-size: 2rem; }
+            .tagline { font-size: 1.1rem; }
+            .intro-card { padding: 1.5rem; }
+            .computer-icon { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <div class="shape shape-4"></div>
+    </div>
+
+    <div class="container">
+        <header class="header">
+            <div class="logo-row">
+                <span class="computer-icon">💻</span>
+                <h1>A Better Computer</h1>
+            </div>
+            <p class="tagline">Tech that <span class="highlight">actually makes sense</span></p>
+        </header>
+
+        <div class="intro-card">
+            <p>
+                Hey! I make videos about the tech I use, the apps I love, and the stuff I'm curious about. No sponsored fluff, no clickbait thumbnails with my mouth open — just honest takes and practical advice.
+            </p>
+            <p class="emoji-bullet">
+                <span>🍎</span> Deep dives on Apple gear<br>
+                <span>🎮</span> Gaming thoughts from a busy person<br>
+                <span>📱</span> App recommendations that aren't garbage<br>
+                <span>🤔</span> Industry analysis without the hot takes
+            </p>
+        </div>
+
+        <div class="cta-section">
+            <a href="https://youtube.com/@abettercomputer" class="subscribe-btn" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24">
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                </svg>
+                Subscribe on YouTube
+            </a>
+            <p class="fun-fact">It's free! (and you can always unsubscribe if I get boring)</p>
+        </div>
+
+        <div class="topics-section">
+            <h2>Topics I Cover</h2>
+            <div class="topics">
+                <span class="topic topic-apple">🍎 Apple</span>
+                <span class="topic topic-reviews">⭐ Tech Reviews</span>
+                <span class="topic topic-apps">📲 Apps</span>
+                <span class="topic topic-gaming">🎮 Gaming</span>
+                <span class="topic topic-analysis">📊 Industry Analysis</span>
+            </div>
+        </div>
+
+        <footer>
+            &copy; 2025 A Better Computer
+        </footer>
+    </div>
+</body>
+</html>
